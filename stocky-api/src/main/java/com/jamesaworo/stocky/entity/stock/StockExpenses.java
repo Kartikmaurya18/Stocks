@@ -1,0 +1,29 @@
+package com.jamesaworo.stocky.entity.stock;
+
+import com.jamesaworo.stocky.entity.BaseModel;
+import lombok.*;
+
+import javax.persistence.*;
+
+import static com.jamesaworo.stocky.core.constants.Table.STOCK_EXPENSES;
+
+@EqualsAndHashCode(callSuper = true)
+@Entity
+@Table(name = STOCK_EXPENSES)
+@Getter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class StockExpenses extends BaseModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private Double amount;
+
+    public StockExpenses(Long id) {
+        this.id = id;
+    }
+}
