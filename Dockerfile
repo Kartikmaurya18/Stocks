@@ -25,5 +25,14 @@ USER stocky
 
 COPY --from=build /app/stocky-api/target/stocky-api.jar app.jar
 
+# Railway's platform has been launching this container with a hardcoded
+# legacy command ("java -jar stocky-api/target/*.jar", left over from the
+# old Procfile/Nixpacks-era config) instead of this image's own ENTRYPOINT,
+# and no dashboard/config-as-code override has stopped it. Rather than keep
+# fighting that, also place the jar at the exact relative path that command
+# expects, so the container starts correctly no matter which command
+# actually runs it.
+COPY --from=build /app/stocky-api/target/stocky-api.jar stocky-api/target/stocky-api.jar
+
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
