@@ -1,8 +1,8 @@
 package com.jamesaworo.stocky.entity.sale;
 
 import com.jamesaworo.stocky.core.base.BaseModel;
-import com.jamesaworo.stocky.entity.company.CompanyCustomer;
-import com.jamesaworo.stocky.entity.company.CompanyPaymentOption;
+import com.jamesaworo.stocky.features.company.domain.entity.CompanyCustomer;
+import com.jamesaworo.stocky.features.company.domain.entity.CompanyPaymentOption;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import lombok.*;
 import org.hibernate.annotations.Type;

@@ -2,7 +2,7 @@ package com.jamesaworo.stocky.dao.sale.specification;
 
 import com.jamesaworo.stocky.core.params.DateRangeParam;
 import com.jamesaworo.stocky.features.company.data.request.CompanyCustomerRequest;
-import com.jamesaworo.stocky.entity.company.CompanyCustomer;
+import com.jamesaworo.stocky.features.company.domain.entity.CompanyCustomer;
 import com.jamesaworo.stocky.dto.request.report.SaleReportRequestDto;
 import com.jamesaworo.stocky.dto.request.sale.SaleTransactionInstallmentRequestDto;
 import com.jamesaworo.stocky.dto.request.sale.SaleTransactionSearchRequestDto;

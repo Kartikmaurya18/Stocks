@@ -1,7 +1,7 @@
 package com.jamesaworo.stocky.dto.request.stock;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.jamesaworo.stocky.dto.request.company.CompanySupplierRequestDto;
+import com.jamesaworo.stocky.features.company.data.request.CompanySupplierRequest;
 import com.jamesaworo.stocky.dto.request.product.ProductRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class StockItemRequestDto {
 	private Integer productQuantity;
 	private Integer productQuantitySold;
 	private String other;
-	private CompanySupplierRequestDto supplier;
+	private CompanySupplierRequest supplier;
 	private ProductRequestDto product;
 	private List<StockExpensesRequestDto> expenses;
 	private StockSettlementRequestDto settlement;

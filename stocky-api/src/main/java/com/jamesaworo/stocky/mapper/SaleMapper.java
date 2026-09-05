@@ -1,8 +1,8 @@
 package com.jamesaworo.stocky.mapper;
 
 import com.jamesaworo.stocky.dto.request.sale.*;
-import com.jamesaworo.stocky.entity.company.CompanyCustomer;
-import com.jamesaworo.stocky.entity.company.CompanyPaymentOption;
+import com.jamesaworo.stocky.features.company.domain.entity.CompanyCustomer;
+import com.jamesaworo.stocky.features.company.domain.entity.CompanyPaymentOption;
 import com.jamesaworo.stocky.entity.product.Product;
 import com.jamesaworo.stocky.entity.sale.*;
 import org.springframework.stereotype.Component;

@@ -5,7 +5,7 @@ import com.jamesaworo.stocky.core.params.PageSearchResult;
 import com.jamesaworo.stocky.core.utils.Util;
 import com.jamesaworo.stocky.dto.request.auth.AccountRequestDto;
 import com.jamesaworo.stocky.dto.request.auth.RoleRequestDto;
-import com.jamesaworo.stocky.entity.auth.User;
+import com.jamesaworo.stocky.features.authentication.domain.entity.User;
 import com.jamesaworo.stocky.service.auth.AccountService;
 import com.jamesaworo.stocky.service.auth.UserService;
 import com.jamesaworo.stocky.features.company.data.request.CompanyEmployeeSearchRequest;
@@ -85,7 +85,13 @@ public class AccountServiceImpl implements AccountService {
         request.setUserId(user.getId());
         request.setName(employee.getPersonalDetail().getEmployeeFullName());
         request.setUsername(user.getUsername());
-        request.setRoles(user.getRoles().stream().map(RoleRequestDto::toPartialRequest).collect(Collectors.toList()));
+        request.setRoles(user.getRoles().stream().map(role -> {
+            RoleRequestDto roleRequest = new RoleRequestDto();
+            roleRequest.setId(role.getId());
+            roleRequest.setName(role.getName());
+            roleRequest.setDescription(role.getDescription());
+            return roleRequest;
+        }).collect(Collectors.toList()));
         request.setPhone(employee.getPersonalDetail().getEmployeePhone());
         request.setIsActiveStatus(user.getIsActiveStatus());
         request.setExpiryDate(Util.formatDate(user.getExpirationDate()));

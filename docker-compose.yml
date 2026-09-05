@@ -1,0 +1,16 @@
+services:
+  stocky:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # dev profile = H2 file DB, same setup you already tested locally.
+      # No separate database container needed for this test run.
+      SPRING_PROFILES_ACTIVE: dev
+    volumes:
+      # Persists the H2 database file (~/stocky.mv.db, i.e. /home/stocky/...
+      # inside the container) across container restarts/rebuilds.
+      - stocky-data:/home/stocky
+
+volumes:
+  stocky-data:

@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/target
+**/.angular
+.git
+.m2
+stocky-mobile
+screens
+*.md
+*.log

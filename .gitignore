@@ -19,3 +19,6 @@ HELP.md
 **/node-modules
 
 ### Flutter
+
+### Maven local repo (created locally while getting the backend running)
+.m2/

@@ -2,7 +2,7 @@ package com.jamesaworo.stocky.serviceImpl.sale.export;
 
 import com.jamesaworo.stocky.core.params.DataExporter;
 import com.jamesaworo.stocky.core.utils.ExportUtil;
-import com.jamesaworo.stocky.config.security.User;
+import com.jamesaworo.stocky.entity.auth.User;
 import com.jamesaworo.stocky.features.authentication.domain.usecase.IUserUsecase;
 import com.jamesaworo.stocky.dto.request.sale.SaleReceiptItemRequestDto;
 import com.jamesaworo.stocky.entity.sale.SaleTransaction;

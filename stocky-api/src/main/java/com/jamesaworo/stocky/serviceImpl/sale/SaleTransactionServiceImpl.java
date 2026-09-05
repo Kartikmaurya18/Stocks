@@ -4,7 +4,7 @@ import com.jamesaworo.stocky.core.constants.Setting;
 import com.jamesaworo.stocky.core.params.PageSearchRequest;
 import com.jamesaworo.stocky.core.params.PageSearchResult;
 import com.jamesaworo.stocky.core.utils.Util;
-import com.jamesaworo.stocky.entity.company.CompanyCustomer;
+import com.jamesaworo.stocky.features.company.domain.entity.CompanyCustomer;
 import com.jamesaworo.stocky.features.company.domain.usecase.ICompanyCustomerUsecase;
 import com.jamesaworo.stocky.features.product.domain.usecase.IProductUsecase;
 import com.jamesaworo.stocky.dao.sale.SaleTransactionDao;
@@ -172,7 +172,11 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
         for (SaleTransactionItem item : items) {
             Optional<SaleTransactionItem> optionalItem = this.itemUsecase.find(item.getId());
             optionalItem.ifPresent(savedItem -> {
-                this.productUsecase.deductProductQuantityAfterSales(savedItem.getProduct(), savedItem.getQuantity());
+                com.jamesaworo.stocky.features.product.domain.entity.Product product =
+                        com.jamesaworo.stocky.features.product.domain.entity.Product.builder()
+                                .id(savedItem.getProduct().getId())
+                                .build();
+                this.productUsecase.deductProductQuantityAfterSales(product, savedItem.getQuantity());
             });
         }
     }

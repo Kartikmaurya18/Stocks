@@ -1,7 +1,7 @@
 package com.jamesaworo.stocky.entity.stock;
 
 import com.jamesaworo.stocky.entity.BaseModel;
-import com.jamesaworo.stocky.entity.company.CompanySupplier;
+import com.jamesaworo.stocky.features.company.domain.entity.CompanySupplier;
 import com.jamesaworo.stocky.entity.product.Product;
 import lombok.*;
 

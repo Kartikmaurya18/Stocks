@@ -1,6 +1,6 @@
 package com.jamesaworo.stocky.serviceImpl.auth;
 
-import com.jamesaworo.stocky.configuration.security.JwtAuthenticationTokenUtil;
+import com.jamesaworo.stocky.config.security.JwtAuthenticationTokenUtil;
 import com.jamesaworo.stocky.dto.request.auth.LoginRequestDto;
 import com.jamesaworo.stocky.dto.response.auth.LoginResponseDto;
 import com.jamesaworo.stocky.dto.response.auth.LoginUserDto;
