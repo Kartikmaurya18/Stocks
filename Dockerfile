@@ -20,19 +20,27 @@ RUN mvn -q -B clean package -DskipTests
 FROM eclipse-temurin:11-jre-jammy
 WORKDIR /app
 
-RUN useradd -m stocky
-USER stocky
-
 COPY --from=build /app/stocky-api/target/stocky-api.jar app.jar
 
 # Railway's platform has been launching this container with a hardcoded
-# legacy command ("java -jar stocky-api/target/*.jar", left over from the
-# old Procfile/Nixpacks-era config) instead of this image's own ENTRYPOINT,
-# and no dashboard/config-as-code override has stopped it. Rather than keep
-# fighting that, also place the jar at the exact relative path that command
-# expects, so the container starts correctly no matter which command
-# actually runs it.
-COPY --from=build /app/stocky-api/target/stocky-api.jar stocky-api/target/stocky-api.jar
+# legacy command - "java -jar stocky-api/target/*.jar", left over from the
+# old Procfile/Nixpacks-era config - instead of this image's own ENTRYPOINT,
+# and neither the dashboard start-command field nor an explicit
+# railway.json deploy.startCommand override has stopped it. The error
+# message ("...target/*.jar", asterisk un-expanded) shows that string is
+# passed to java literally, with no shell globbing involved. Linux allows a
+# literal '*' in a filename, so create a file with that exact literal name
+# - it satisfies the broken command whether or not a shell ever expands it,
+# since a real shell glob "*.jar" also matches a file literally named
+# "*.jar".
+RUN mkdir -p stocky-api/target && cp app.jar 'stocky-api/target/*.jar'
+# Also hedge against Railway's launcher not honoring this image's WORKDIR
+# (i.e. running the command from / instead of /app) by placing the same
+# literally-named file at the absolute root-level path too.
+RUN mkdir -p /stocky-api/target && cp /app/app.jar '/stocky-api/target/*.jar'
+
+RUN useradd -m stocky && chown -R stocky:stocky /app
+USER stocky
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
