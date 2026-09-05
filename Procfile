@@ -1,1 +1,0 @@
-web: java -Dserver.port=$PORT -Dspring.profiles.active=$SPRING_PROFILES_ACTIVE -Djwt.secret=$JWT_SECRET -Djwt.expiration=$JWT_EXP_DURATION -Djwt.issuer=$JWT_ISSUER -Dstocky.system.password=$STK_SYSTEM_PW -Dstocky.system.username=$STK_SYSTEM_US -jar stocky-api/target/*.jar
