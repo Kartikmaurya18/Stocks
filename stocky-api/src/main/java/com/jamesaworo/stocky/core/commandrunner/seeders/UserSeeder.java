@@ -34,7 +34,7 @@ public class UserSeeder {
     @Value(value = "${stocky.system.username}")
     private String systemUsername;
 
-    @Value(value = "${spring.profiles.active")
+    @Value(value = "${spring.profiles.active}")
     private String profiles;
 
     public void run() {
